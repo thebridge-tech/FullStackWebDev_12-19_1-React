@@ -3,8 +3,8 @@ import FeatureDetail from "../FeatureDetail/FeatureDetail.js";
 import "./FeaturesMaster.css";
 
 class FeaturesMaster extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     // Mock data
     this.state = {
@@ -25,6 +25,9 @@ class FeaturesMaster extends Component {
         }
       ]
     };
+
+    // Explicit binding
+    this.addNewFeature = this.addNewFeature.bind(this);
   }
 
   getItems() {
@@ -42,9 +45,41 @@ class FeaturesMaster extends Component {
     return resultMap;
   }
 
+  addNewFeature(event) {
+    event.preventDefault();
+
+    let inputTitle = event.target.children[1];
+    let inputBody = event.target.children[3];
+
+    this.setState(prevState => ({
+      title: prevState.title,
+      nameSection: prevState.nameSection,
+      features: [
+        ...prevState.features,
+        {
+          title: inputTitle.value,
+          body: inputBody.value
+        }
+      ]
+    }));
+  }
+
   render() {
     return (
       <div className="features-master">
+        <div className="row">
+          <div className="col-12">
+            <form onSubmit={this.addNewFeature}>
+              <label htmlFor="title">Título</label>
+              <input type="text" id="title" name="title" />
+
+              <label htmlFor="body">Cuerpo</label>
+              <textarea id="body" name="body"></textarea>
+
+              <button type="submit">Nuevo</button>
+            </form>
+          </div>
+        </div>
         <div className="row">
           <div className="col-12">
             <h1>{this.state.title}</h1>
