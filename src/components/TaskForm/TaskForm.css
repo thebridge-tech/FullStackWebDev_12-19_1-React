@@ -1,0 +1,18 @@
+.taskform {
+  margin-top: 10px;
+  padding-bottom: 20px;
+}
+
+.taskform .row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 36%;
+  margin-left: 30%;
+  background-color: white;
+  padding: 10px 2%;
+}
+
+.taskform .row > button {
+  flex: 1;
+}
